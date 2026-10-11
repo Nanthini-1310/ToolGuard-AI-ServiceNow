@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_choice action="INSERT_OR_UPDATE" field="tool_type" table="x_snc_toolguard_ai_tool" version="3">
+        <sys_choice_set action="INSERT_OR_UPDATE">
+            <element>tool_type</element>
+            <name>x_snc_toolguard_ai_tool</name>
+            <sys_class_name>sys_choice_set</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-25 17:44:19</sys_created_on>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>tool_type</sys_name>
+            <sys_package display_value="ToolGuard AI" source="x_snc_toolguard_ai">154397a0a46703107f44129c63887914</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="ToolGuard AI">154397a0a46703107f44129c63887914</sys_scope>
+            <sys_update_name>sys_choice_x_snc_toolguard_ai_tool_tool_type</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-25 17:44:19</sys_updated_on>
+        </sys_choice_set>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>tool_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Cutting Tool</label>
+            <language>en</language>
+            <name>x_snc_toolguard_ai_tool</name>
+            <sequence>0</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-25 17:44:19</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-25 17:44:19</sys_updated_on>
+            <value>Cutting Tool</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>tool_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Drilling Tool</label>
+            <language>en</language>
+            <name>x_snc_toolguard_ai_tool</name>
+            <sequence>1</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-25 17:44:19</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-25 17:44:19</sys_updated_on>
+            <value>Drilling Tool</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>tool_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Assembly Fixture</label>
+            <language>en</language>
+            <name>x_snc_toolguard_ai_tool</name>
+            <sequence>2</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-25 17:44:19</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-25 17:44:19</sys_updated_on>
+            <value>Assembly Fixture</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>tool_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Welding Fixture</label>
+            <language>en</language>
+            <name>x_snc_toolguard_ai_tool</name>
+            <sequence>3</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-25 17:44:19</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-25 17:44:19</sys_updated_on>
+            <value>Welding Fixture</value>
+        </sys_choice>
+        <sys_choice action="INSERT_OR_UPDATE">
+            <dependent_value/>
+            <element>tool_type</element>
+            <hint/>
+            <inactive>false</inactive>
+            <label>Inspection Fixture</label>
+            <language>en</language>
+            <name>x_snc_toolguard_ai_tool</name>
+            <sequence>4</sequence>
+            <synonyms/>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2026-09-25 17:44:19</sys_created_on>
+            <sys_domain>global</sys_domain>
+            <sys_domain_path>/</sys_domain_path>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2026-09-25 17:44:19</sys_updated_on>
+            <value>Inspection Fixture</value>
+        </sys_choice>
+    </sys_choice>
+</record_update>

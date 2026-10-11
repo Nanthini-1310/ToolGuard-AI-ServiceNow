@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sysauto_report">
+    <sysauto_report action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <address_list/>
+        <advanced>true</advanced>
+        <business_calendar/>
+        <condition/>
+        <conditional>false</conditional>
+        <entered_run_end/>
+        <entered_run_start/>
+        <entered_time>1970-01-01 00:00:00</entered_time>
+        <group_list/>
+        <include_detail>false</include_detail>
+        <include_with/>
+        <max_drift/>
+        <name>Scheduled execution of Daily Tool Operations &amp; Inspection Summary</name>
+        <offset/>
+        <offset_type/>
+        <omit_if_no_records>false</omit_if_no_records>
+        <output_type>PDF-landscape</output_type>
+        <page_height_in_pixels>612</page_height_in_pixels>
+        <page_size>Letter</page_size>
+        <page_width_in_pixels>792</page_width_in_pixels>
+        <repeat_every/>
+        <report display_value="Daily Tool Operations &amp; Inspection Summary">15a5a00a88b703107f4484dec0ab4597</report>
+        <report_body><![CDATA[<p>Hello Team,</p>
+<p>Attached is the automated PDF report detailing tool lifecycle statuses, inspection counts, and current usage metrics for ToolGuard AI.</p>
+<p>Regards,<br>ToolGuard AI Automated Reporting System</p>]]></report_body>
+        <report_title/>
+        <run_as display_value="System Administrator">6816f79cc0a8016401c5a33be04be441</run_as>
+        <run_as_tz/>
+        <run_dayofmonth>1</run_dayofmonth>
+        <run_dayofweek>1</run_dayofweek>
+        <run_daysofweek/>
+        <run_end/>
+        <run_month>1</run_month>
+        <run_period/>
+        <run_start>2026-10-09 07:00:08</run_start>
+        <run_time>1970-01-01 00:00:00</run_time>
+        <run_type>daily</run_type>
+        <run_weekinmonth>1</run_weekinmonth>
+        <sys_class_name>sysauto_report</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-09 07:00:45</sys_created_on>
+        <sys_id>16a5a40a88b703107f4484dec0ab456a</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Scheduled execution of Daily Tool Operations &amp; Inspection Summary</sys_name>
+        <sys_package display_value="ToolGuard AI" source="x_snc_toolguard_ai">154397a0a46703107f44129c63887914</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="ToolGuard AI">154397a0a46703107f44129c63887914</sys_scope>
+        <sys_update_name>sysauto_report_16a5a40a88b703107f4484dec0ab456a</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-11 06:51:54</sys_updated_on>
+        <time_zone/>
+        <upgrade_safe>false</upgrade_safe>
+        <user_list>3a2cf3d1d82303107f4494f854f0c39a,f05eb3d5d82303107f4494f854f0c3ad,6816f79cc0a8016401c5a33be04be441</user_list>
+        <zip>false</zip>
+    </sysauto_report>
+</record_update>

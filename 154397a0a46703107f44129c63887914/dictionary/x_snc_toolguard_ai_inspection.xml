@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="62f3c0d5a5eb03107f44955f92ec896b" label="Inspection" max_length="40" name="x_snc_toolguard_ai_inspection" type="collection">
+        <element label="Tool" max_length="32" name="tool" reference="x_snc_toolguard_ai_tool" type="reference"/>
+        <element display="true" label="Inspection ID" max_length="40" name="inspection_id" type="string"/>
+        <element label="Inspector" max_length="32" name="inspector" reference="sys_user" type="reference"/>
+        <element label="Work Order Reference" max_length="40" name="work_order_reference" type="string"/>
+        <element choice="1" default="Normal Wear" label="Wear Condition" max_length="40" name="wear_condition" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Normal Wear" sequence="0" value="Normal Wear"/>
+                <element inactive_on_update="false" label="Severe Wear" sequence="2" value="Severe Wear"/>
+                <element inactive_on_update="false" label="Moderate Wear" sequence="1" value="Moderate Wear"/>
+                <element inactive_on_update="false" label="Critical Damage" sequence="3" value="Critical Damage"/>
+            </choice>
+        </element>
+        <element label="Defect Notes" max_length="40" name="defect_notes" type="string"/>
+        <element choice="1" default="Passed" label="Result" max_length="40" name="result" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Conditional Pass" sequence="1" value="Conditional Pass"/>
+                <element inactive_on_update="false" label="Passed" sequence="0" value="Passed"/>
+                <element inactive_on_update="false" label="Failed - Scrap" sequence="3" value="Failed - Scrap"/>
+                <element inactive_on_update="false" label="Failed - Requires Reconditioning" sequence="2" value="Failed - Requires Reconditioning"/>
+            </choice>
+        </element>
+        <index name="index">
+            <element name="tool"/>
+        </index>
+        <index name="index2">
+            <element name="inspector"/>
+        </index>
+    </element>
+</database>

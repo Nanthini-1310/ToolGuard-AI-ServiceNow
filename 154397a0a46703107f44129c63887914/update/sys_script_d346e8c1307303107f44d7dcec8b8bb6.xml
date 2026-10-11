@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_snc_toolguard_ai_tool_usage</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Sync Delta Usage to Master Tool</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+
+    // Safely retrieve field values regardless of u_ prefix variations
+    var toolSysId = current.getValue('u_tool') || current.getValue('tool');
+    var addedCyclesVal = current.getValue('u_cycles_added') || current.getValue('cycles_added');
+
+    if (!toolSysId || !addedCyclesVal) {
+        gs.addErrorMessage("ToolGuard Sync Warning: Missing Tool Reference or Cycles Added value.");
+        return;
+    }
+
+    var addedCycles = parseInt(addedCyclesVal, 10);
+
+    // Query the master Tool record
+    var toolGr = new GlideRecord('x_snc_toolguard_ai_tool');
+    if (toolGr.get(toolSysId)) {
+        
+        // Fetch existing cycle count
+        var currentCyclesVal = toolGr.getValue('u_current_cycles') || toolGr.getValue('current_cycles') || '0';
+        var currentCycles = parseInt(currentCyclesVal, 10);
+        var newTotal = currentCycles + addedCycles;
+
+        // Set updated cycle count on Tool record
+        if (toolGr.isValidField('u_current_cycles')) {
+            toolGr.setValue('u_current_cycles', newTotal);
+        } else {
+            toolGr.setValue('current_cycles', newTotal);
+        }
+
+        // Fetch lifecycle limit and evaluate preliminary status update
+        var limitVal = toolGr.getValue('u_lifecycle_limit') || toolGr.getValue('lifecycle_limit') || '10000';
+        var limit = parseInt(limitVal, 10);
+        var statusVal = toolGr.getValue('u_status') || toolGr.getValue('status');
+
+        if (newTotal >= limit && statusVal === 'Available') {
+            if (toolGr.isValidField('u_status')) {
+                toolGr.setValue('u_status', 'Inspection Required');
+            } else {
+                toolGr.setValue('status', 'Inspection Required');
+            }
+        }
+
+        // Commit update to database
+        toolGr.update();
+        gs.addInfoMessage("SUCCESS: Tool cycles updated to " + newTotal + " successfully!");
+    } else {
+        gs.addErrorMessage("ToolGuard Sync Error: Target Tool record not found.");
+    }
+
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-06 04:33:33</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>d346e8c1307303107f44d7dcec8b8bb6</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Sync Delta Usage to Master Tool</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="ToolGuard AI" source="x_snc_toolguard_ai">154397a0a46703107f44129c63887914</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="ToolGuard AI">154397a0a46703107f44129c63887914</sys_scope>
+        <sys_update_name>sys_script_d346e8c1307303107f44d7dcec8b8bb6</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-06 04:33:33</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=d346e8c1307303107f44d7dcec8b8bb6"/>
+</record_update>

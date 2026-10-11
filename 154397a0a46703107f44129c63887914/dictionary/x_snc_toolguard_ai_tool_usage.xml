@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="891c1f85a56703107f44955f92ec898f" label="Tool Usage" max_length="40" name="x_snc_toolguard_ai_tool_usage" type="collection">
+        <element default="javascript:gs.nowDateTime()" dynamic_default_value="79cb83a85f220100a9ad2572f2b4773c" label="Logged At" max_length="40" name="logged_at" type="glide_date_time" use_dynamic_default="true"/>
+        <element label="Machine / Sensor ID" max_length="50" name="machine_sensor_id" type="string"/>
+        <element label="Logged By" max_length="32" name="logged_by" reference="sys_user" type="reference"/>
+        <element label="Tool" max_length="32" name="tool" reference="x_snc_toolguard_ai_tool" type="reference"/>
+        <element label="Shift" max_length="30" name="shift" type="string"/>
+        <element default="0" label="Cycles Added" max_length="40" name="cycles_added" type="integer"/>
+        <index name="index">
+            <element name="tool"/>
+        </index>
+        <index name="index2">
+            <element name="logged_by"/>
+        </index>
+    </element>
+</database>

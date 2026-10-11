@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_snc_toolguard_ai.ToolGuardRiskEngine</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <mobile_callable>false</mobile_callable>
+        <name>ToolGuardRiskEngine</name>
+        <sandbox_callable>false</sandbox_callable>
+        <script><![CDATA[var ToolGuardRiskEngine = Class.create();
+ToolGuardRiskEngine.prototype = {
+    initialize: function() {},
+
+    /**
+     * Calculates dynamic multi-factor risk score and generates AI reasoning.
+     * @param {GlideRecord} toolGr - Target Tool record
+     * @return {Object} Object containing numerical 'score' and string 'reason'
+     */
+    calculateRisk: function(toolGr) {
+        // 1. Fetch current cycles and lifecycle limit safely
+        var cyclesVal = toolGr.getValue('u_current_cycles') || toolGr.getValue('current_cycles') || '0';
+        var limitVal = toolGr.getValue('u_lifecycle_limit') || toolGr.getValue('lifecycle_limit') || '10000';
+        
+        var cycles = parseInt(cyclesVal, 10);
+        var limit = parseInt(limitVal, 10);
+
+        // Vector 1: Usage Burden Score (0 to 60 points)
+        var usageRatio = limit > 0 ? (cycles / limit) : 0;
+        var usageRisk = Math.min(Math.round(usageRatio * 60), 60);
+
+        // Vector 2: Inspection Wear Penalty (0 to 30 points)
+        var inspectionPenalty = 0;
+        var inspGr = new GlideRecord('x_snc_toolguard_ai_inspection');
+        
+        // Match tool field name dynamically
+        if (inspGr.isValidField('u_tool')) {
+            inspGr.addQuery('u_tool', toolGr.getUniqueValue());
+        } else {
+            inspGr.addQuery('tool', toolGr.getUniqueValue());
+        }
+        
+        inspGr.orderByDesc('sys_created_on');
+        inspGr.setLimit(1);
+        inspGr.query();
+
+        if (inspGr.next()) {
+            var condition = inspGr.getValue('u_wear_condition') || inspGr.getValue('wear_condition') || '';
+            if (condition === 'Moderate Wear') {
+                inspectionPenalty = 10;
+            } else if (condition === 'Severe Wear') {
+                inspectionPenalty = 20;
+            } else if (condition === 'Critical Damage') {
+                inspectionPenalty = 30;
+            }
+        }
+
+        // Vector 3: Overuse Buffer Penalty (0 to 10 points)
+        var overusePenalty = (usageRatio > 0.90) ? 10 : 0;
+
+        // Calculate Total Score (Capped at 100)
+        var totalRisk = Math.min(usageRisk + inspectionPenalty + overusePenalty, 100);
+
+        // Generate Plain-Language Explainable AI Reasoning
+        var reasoning = "Risk Score " + totalRisk + "/100 calculated via Multi-Factor Risk Matrix. " +
+            "Breakdown: Usage Burden = " + usageRisk + "/60 (" + Math.round(usageRatio * 100) + "% limit used), " +
+            "Inspection Degradation Penalty = " + inspectionPenalty + "/30, " +
+            "Overuse Buffer Penalty = " + overusePenalty + "/10.";
+
+        return {
+            score: totalRisk,
+            reason: reasoning
+        };
+    },
+
+    type: 'ToolGuardRiskEngine'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-08 04:06:25</sys_created_on>
+        <sys_id>79b3f6adac3303107f4401690ac982e8</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>ToolGuardRiskEngine</sys_name>
+        <sys_package display_value="ToolGuard AI" source="x_snc_toolguard_ai">154397a0a46703107f44129c63887914</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="ToolGuard AI">154397a0a46703107f44129c63887914</sys_scope>
+        <sys_update_name>sys_script_include_79b3f6adac3303107f4401690ac982e8</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-08 04:06:25</sys_updated_on>
+    </sys_script_include>
+</record_update>

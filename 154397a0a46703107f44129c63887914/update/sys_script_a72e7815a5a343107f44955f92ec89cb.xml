@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_script">
+    <sys_script action="INSERT_OR_UPDATE">
+        <abort_action>false</abort_action>
+        <access>package_private</access>
+        <action_delete>false</action_delete>
+        <action_insert>true</action_insert>
+        <action_query>false</action_query>
+        <action_update>false</action_update>
+        <active>true</active>
+        <add_message>false</add_message>
+        <advanced>true</advanced>
+        <change_fields>false</change_fields>
+        <client_callable>false</client_callable>
+        <collection>x_snc_toolguard_ai_tool_usage</collection>
+        <condition/>
+        <description/>
+        <execute_function>false</execute_function>
+        <filter_condition/>
+        <is_rest>false</is_rest>
+        <message/>
+        <name>Sync Usage Cycles to Tool</name>
+        <order>100</order>
+        <priority>100</priority>
+        <rest_method/>
+        <rest_method_text/>
+        <rest_service/>
+        <rest_service_text/>
+        <rest_variables/>
+        <role_conditions/>
+        <script><![CDATA[(function executeRule(current, previous /*null when async*/) {
+    if (!current.u_tool || !current.u_cycles_added) return;
+
+    var toolGr = new GlideRecord('x_snc_toolguard_ai_tool');
+    if (toolGr.get(current.u_tool)) {
+        var currentCycles = parseInt(toolGr.getValue('u_current_cycles') || '0', 10);
+        var addedCycles = parseInt(current.u_cycles_added || '0', 10);
+        var newTotal = currentCycles + addedCycles;
+
+        toolGr.setValue('u_current_cycles', newTotal);
+
+        var limit = parseInt(toolGr.getValue('u_lifecycle_limit') || '10000', 10);
+        if (newTotal >= limit && toolGr.getValue('u_status') === 'Available') {
+            toolGr.setValue('u_status', 'Inspection Required');
+        }
+        toolGr.update();
+    }
+})(current, previous);]]></script>
+        <sys_class_name>sys_script</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-09-24 14:37:27</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>a72e7815a5a343107f44955f92ec89cb</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Sync Usage Cycles to Tool</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="ToolGuard AI" source="x_snc_toolguard_ai">154397a0a46703107f44129c63887914</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="ToolGuard AI">154397a0a46703107f44129c63887914</sys_scope>
+        <sys_update_name>sys_script_a72e7815a5a343107f44955f92ec89cb</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-09-24 14:37:27</sys_updated_on>
+        <template/>
+        <when>after</when>
+    </sys_script>
+    <sys_translated_text action="delete_multiple" query="documentkey=a72e7815a5a343107f44955f92ec89cb"/>
+</record_update>

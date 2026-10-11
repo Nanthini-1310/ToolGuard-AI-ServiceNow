@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_notification_next_experience_content">
+    <sys_notification_next_experience_content action="INSERT_OR_UPDATE">
+        <action_name/>
+        <action_payload/>
+        <active>true</active>
+        <is_default>false</is_default>
+        <message><![CDATA[Hello ${assigned_to.first_name},
+
+An upcoming tool inspection or maintenance cycle requires your attention.
+
+TOOL DETAILS:
+- Tool Name: ${tool_id.name}
+- Tool ID: ${tool_id.number}
+- Category: ${tool_id.category}
+
+INSPECTION SUMMARY:
+- Inspection ID: ${number}
+- Scheduled Date: ${scheduled_date}
+- Priority: ${priority}
+
+Please complete the required inspection and update the record in ToolGuard AI.
+
+Link to Record: ${URI_REF}
+
+Thank you,
+ToolGuard AI System Administrator]]></message>
+        <message_heading><![CDATA[[ToolGuard AI] Maintenance Due: ${tool_id.name}]]></message_heading>
+        <name>Tool Calibration/Maintenance Reminder</name>
+        <notification display_value="ToolGuard - Inspection Required Alert">6f64da82887743107f4484dec0ab4511</notification>
+        <route display_value="Next Experience Route">bccd1214533201107cd3ddeeff7b1289</route>
+        <sys_class_name>sys_notification_next_experience_content</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2026-10-09 17:50:51</sys_created_on>
+        <sys_id>863a7a4a887b43107f4484dec0ab4591</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>Tool Calibration/Maintenance Reminder</sys_name>
+        <sys_package display_value="ToolGuard AI" source="x_snc_toolguard_ai">154397a0a46703107f44129c63887914</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="ToolGuard AI">154397a0a46703107f44129c63887914</sys_scope>
+        <sys_update_name>sys_notification_next_experience_content_863a7a4a887b43107f4484dec0ab4591</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2026-10-09 20:55:34</sys_updated_on>
+        <use_action>false</use_action>
+    </sys_notification_next_experience_content>
+</record_update>

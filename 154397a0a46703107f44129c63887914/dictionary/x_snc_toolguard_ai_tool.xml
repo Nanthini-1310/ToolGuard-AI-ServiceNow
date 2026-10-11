@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element attributes="enforce_dot_walk_cross_scope_access=true" db_object_id="6ef7df8da52703107f44955f92ec89b4" label="Tool" max_length="40" name="x_snc_toolguard_ai_tool" type="collection">
+        <element label="Active Shift" max_length="32" name="active_shift" reference="sys_user_group" type="reference"/>
+        <element default="0" label="Current cycles" max_length="40" name="current_cycles" read_only="true" read_only_option="instance_configured" type="integer"/>
+        <element default="0" label="Risk score" max_length="40" name="risk_score" read_only="true" read_only_option="instance_configured" type="integer"/>
+        <element choice="1" label="Tool Type" max_length="40" name="tool_type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Welding Fixture" sequence="3" value="Welding Fixture"/>
+                <element inactive_on_update="false" label="Inspection Fixture" sequence="4" value="Inspection Fixture"/>
+                <element inactive_on_update="false" label="Drilling Tool" sequence="1" value="Drilling Tool"/>
+                <element inactive_on_update="false" label="Cutting Tool" sequence="0" value="Cutting Tool"/>
+                <element inactive_on_update="false" label="Assembly Fixture" sequence="2" value="Assembly Fixture"/>
+            </choice>
+        </element>
+        <element choice="1" default="Registered" label="Status" max_length="40" name="status" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Blocked" sequence="5" value="Blocked"/>
+                <element inactive_on_update="false" label="Inspection Required" sequence="3" value="Inspection Required"/>
+                <element inactive_on_update="false" label="Available" sequence="1" value="Available"/>
+                <element inactive_on_update="false" label="Registered" sequence="0" value="Registered"/>
+                <element inactive_on_update="false" label="Reconditioning" sequence="6" value="Reconditioning"/>
+                <element inactive_on_update="false" label="Under Inspection" sequence="4" value="Under Inspection"/>
+                <element inactive_on_update="false" label="In Use" sequence="2" value="In Use"/>
+            </choice>
+        </element>
+        <element attributes="ignore_filter_on_new=true" default="javascript:global.getNextObjNumberPadded();" label="Number" max_length="40" name="number" type="string"/>
+        <element label="Tool Name" max_length="100" name="tool_name" type="string"/>
+        <element display="true" label="Tool ID" max_length="40" name="tool_id" type="string"/>
+        <element label="Risk Explanation / AI Reasoning" max_length="400" name="risk_explanation_ai_reasoning" type="string"/>
+        <element label="Assigned Machine / Line" max_length="32" name="assigned_machine_line" reference="sys_user" type="reference"/>
+        <element default="10000" label="Lifecycle Limit" max_length="40" name="lifecycle_limit" type="integer"/>
+        <index name="index">
+            <element name="active_shift"/>
+        </index>
+        <index name="index2">
+            <element name="assigned_machine_line"/>
+        </index>
+    </element>
+</database>
